@@ -14,11 +14,11 @@ from discord.voice_client import VoiceClient
 import webbrowser
 
 
-bot = commands.Bot(command_prefix="c!")
+bot = commands.Bot(command_prefix="Your Prefix here")
 bot.remove_command('help')
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game(name=f'c!help https://discord.gg/8xJJVKZjEN'))
+    await bot.change_presence(activity=discord.Game(name=f'Your Prefix here'))
     print('I logged me in. Beep Bop.')
 
 
@@ -27,7 +27,7 @@ async def on_ready():
 async def kick(ctx, user: discord.Member, *, reason=None):
     await user.kick(reason=reason)
     await user.send(f'You have been kicked for reason {reason} !')
-    await ctx.send(f"Der User {user.mention} wurde gekickt!")
+    await ctx.send(f"User {user.mention} has been kicked!")
 
 @bot.command()
 @commands.has_permissions(manage_messages=True)
@@ -62,7 +62,7 @@ async def rickroll(ctx):
 async def ban(ctx, user: discord.Member, *, reason=None):
     await user.ban(reason=reason)
     await user.send(f'You have been banned for reason {reason} !')
-    await ctx.send(f"\u2705 Der User {user.mention} wurde gebannt!")
+    await ctx.send(f"\u2705 User {user.mention} has been banned!")
 
 @bot.command()
 async def open_url(ctx, url):
@@ -75,17 +75,17 @@ async def help(ctx):
         color=discord.Colour.blue()
     )
     embed.set_author(name='--Help for the Commands--')
-    embed.add_field(name='c!ban', value='Bans a Member', inline=False)
-    embed.add_field(name='c!kick', value='Kicks a Member', inline=False)
-    embed.add_field(name='c!unban', value='Unbans Member', inline=False)
-    embed.add_field(name='c!warn', value='warns a Member, this Command is still in development', inline=False)
-    embed.add_field(name='c!clear (amount of messages)', value='deletes Messages', inline=False)
-    embed.add_field(name='c!rickroll', value='rickrolls yourself', inline=False)
-    embed.add_field(name='If you need help:', value='https://discord.gg/2WRXSjEkzY', inline=False)
+    embed.add_field(name='ban', value='Bans a Member', inline=False)
+    embed.add_field(name='kick', value='Kicks a Member', inline=False)
+    embed.add_field(name='unban', value='Unbans Member', inline=False)
+    embed.add_field(name='warn', value='warns a Member, this Command is still in development', inline=False)
+    embed.add_field(name='clear (amount of messages)', value='deletes Messages', inline=False)
+    embed.add_field(name='rickroll', value='rickrolls yourself', inline=False)
     msg = await ctx.send(embed=embed)
     await msg.add_reaction('\u2705')
 
 @bot.command()
+@commands.has_permissions(manage_messages = True)
 async def clear(ctx, amount: int):
     sleep(0.5)
     if amount > 100:
@@ -117,4 +117,5 @@ async def unban(ctx, user: discord.Member):
             await ctx.guild.unban(user)
             await ctx.send(f'Unbanned {user.mention} !')
             return
-bot.run("ODYyMzA5NTk4MjYwODg3NTgy.YOWeZQ.qC3xkn1u33nm7mbp35UiJLaS1wM")
+        
+bot.run("Your Token here")
