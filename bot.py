@@ -65,8 +65,13 @@ async def ban(ctx, user: discord.Member, *, reason=None):
     await ctx.send(f"\u2705 User {user.mention} has been banned!")
 
 @bot.command()
-async def open_url(ctx, url):
-    await webbrowser.open(f'{url}')
+async def open(ctx, *, reason=None):
+    if reason == 'youtube':
+        await webbrowser.open(youtube)
+    if reason == 'discord':
+        await webbrowser.open(discord_url)
+    if reason == 'twitter':
+        await webbrowser.open(twitter)
 
 @bot.command(pass_context=True)
 async def help(ctx):
