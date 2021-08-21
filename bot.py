@@ -120,7 +120,7 @@ async def clear_error(ctx, error):
 
 @bot.command()
 async def unban(ctx, user: discord.Member):
-    banned_users = await ctx.guil.bans()
+    banned_users = await ctx.guild.bans()
     member_name, member_discriminator = member.split('#')
 
     for ban_entry in banned_users:
