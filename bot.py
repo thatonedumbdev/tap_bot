@@ -17,6 +17,7 @@ youtube = ('https://www.youtube.com')
 discord_url = ('https://discord.com')
 twitter = ('https://twitter.com')
 github = ('https://github.com')
+stackoverflow = ('https://stackoverflow.com')
 
 bot = commands.Bot(command_prefix="Your Prefix here")
 bot.remove_command('help')
@@ -78,6 +79,8 @@ async def open(ctx, *, reason=None):
         await webbrowser.open(twitter)
     if reason == 'github':
         await webbrowser.open(github)
+    if reason == 'stackoverflow':
+        await webbrowser.open(stackoverflow)
     else:
         await ctx.send('this is not a valid url!')
 
