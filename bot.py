@@ -31,14 +31,14 @@ async def on_ready():
 @commands.has_permissions(kick_members = True)
 async def kick(ctx, user: discord.Member, *, reason=None):
     await user.kick(reason=reason)
-    await user.send(f'You have been kicked for reason {reason} !')
+    await user.send(f'You have been kicked by {ctx.author} for reason {reason} !')
     await ctx.send(f"User {user.mention} has been kicked!")
     
 @bot.command()
 @commands.has_permissions(ban_members = True)
 async def ban(ctx, user: discord.Member, *, reason=None):
     await user.ban(reason=reason)
-    await user.send(f'You have been banned for reason {reason} !')
+    await user.send(f'You have been banned by {ctx.author} for reason {reason} !')
     await ctx.send(f"\u2705 User {user.mention} has been banned!")
     
 @bot.command()
@@ -52,6 +52,7 @@ async def unban(ctx, user: discord.Member):
         if (user.name, user.discriminator) == (member_name, member_discriminator):
             await ctx.guild.unban(user)
             await ctx.send(f'Unbanned {user.mention} !')
+            await user.send(f'You have been unbanned')
             return
 
 @bot.command(pass_context=True)
@@ -109,6 +110,10 @@ async def warn(ctx, user: discord.Member, *, reason=None):
         return await ctx.send("You cannot warn yourself!")
     if reason == None:
         return await ctx.send("Please specify a reason to warn this user.")
+    warn_count = 0
+    warn_count = warn_count + 1
+    if warn_count == 3:
+        await user.kick()
     await user.send(embed=embed, delete_after=60*60)
     await ctx.send(embed=embed2)
     
