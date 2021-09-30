@@ -3,14 +3,10 @@ import random
 import datetime
 import discord.utils
 from discord.utils import get
-import time
 from time import sleep
 import asyncio
 from discord import Member, Guild
 from discord.ext import commands
-import aiohttp
-from itertools import cycle
-from discord.voice_client import VoiceClient
 import webbrowser
 
 youtube = ('https://www.youtube.com')
@@ -77,15 +73,12 @@ async def help(ctx):
 async def clear(ctx, amount: int):
     sleep(0.5)
     if amount > 100:
-        await ctx.send('You cannot delete more than 100 Messages! ', delete_after=3)
-    elif amount == 0:
-        await ctx.send('The Amount has to be 1 Message or more!')
+        return await ctx.send("You can\'t delete more than 100 messages!")
+    elif amount < 1:
+        return await ctx.send("You can\'t clear less than 1 message!")
     else:
         await ctx.channel.purge(limit=amount+1)
-        if amount > 1:
-            await ctx.send(f'\u2705 {amount} Messages deleted!', delete_after=3)
-        elif amount == 1:
-            await ctx.send('\u2705 1 Message deleted!', delete_after=3)
+        
 @clear.error
 async def clear_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
@@ -139,7 +132,9 @@ async def open(ctx, *, reason=None):
     if reason == 'stackoverflow':
         await webbrowser.open(stackoverflow)
     else:
-        await ctx.send('this is not a valid url!')
+        await ctx.send(''''This is not a valid site. The sites that are
+                       currently working are YouTube, Discord, Twitter
+                       GitHub and StackOverflow.'''')
 
 
 
