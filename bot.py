@@ -1,6 +1,5 @@
 import discord
 import random
-import datetime
 import discord.utils
 from discord.utils import get
 from time import sleep
