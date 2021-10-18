@@ -180,7 +180,7 @@ async def help(ctx):
     embed.add_field(name='c!rickroll', value='rickrolls yourself, so don\'t try it', inline=False)
     embed.add_field(name='c!lotto {any number between 1 and 50}', value='starts a small lottery', inline=False)
     embed.add_field(name='If you need help:', value='https://discord.gg/2WRXSjEkzY', inline=False)
-    embed.add_field(name='Bot made and Developed by atomfrog and FreerideFriendsYT, Source Code: ', value='-----------------------------------', inline=False)
+    embed.add_field(name='Bot made and Developed by atomfrog and FreerideFriendsYT, Source Code: https://github.com/atomfrog/Chibibot/blob/main/bot.py', value='-----------------------------------', inline=False)
     msg = await ctx.send(embed=embed)
     await msg.add_reaction('\u2705')
 
