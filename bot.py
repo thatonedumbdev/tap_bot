@@ -32,7 +32,6 @@ async def botinfo(ctx):
     botinfo_embed.add_field(name="Prefix:", value="c!, If you want to change it, edit the Source Code.")
     botinfo_embed.add_field(name='Source Code:', value='Bot Source Code on GitHub:'
                                                        ' https://github.com/atomfrog/Chibibot/blob/main/bot.py')
-    botinfo_embed.add_field(name='Developed by atomfrog and FreerideFriendsYT', value='-------------------------------', inline=False)
     await ctx.send(embed=botinfo_embed)
 
 
@@ -125,7 +124,7 @@ async def warn_error(ctx, error):
 #some commands just for fun
 @bot.command()
 async def rickroll(ctx):
-    await ctx.send("You have been **Rickrolled**")
+    await ctx.send("You just got **Rickrolled**")
     await webbrowser.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
 
@@ -159,7 +158,8 @@ async def open(ctx, *, reason=None):
     if reason == 'stackoverflow':
         await webbrowser.open(stackoverflow)
     else:
-        await ctx.send('This is not a valid url!')
+        await ctx.send('This is not a valid URl! Please try YouTube, Discord, Twitter,
+                       'GitHub or StackOverflow ')
 
 
 
@@ -200,11 +200,6 @@ async def clear(ctx, amount: int):
 async def clear_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send('Please specify an amount of messages to delete!')
-
-
-
-
-
 
         
 bot.run("Your Token here")
