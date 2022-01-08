@@ -39,6 +39,8 @@ async def botinfo(ctx):
 @bot.command()
 @commands.has_permissions(kick_members = True)
 async def kick(ctx, user: discord.Member, *, reason=None):
+    if reason is None:
+        await ctx.send('Please specify a reason to kick this user!')
     await user.kick(reason=reason)
     await user.send(f'You have been kicked for reason {reason} !')
     await ctx.send(f"\u2705 User {user.mention} has been kicked!")
@@ -53,6 +55,8 @@ async def kick_error(ctx, error):
 @bot.command()
 @commands.has_permissions(ban_members = True)
 async def ban(ctx, user: discord.Member, *, reason=None):
+    if reason is None:
+        await ctx.send('Please specify a reason to ban this user!')
     await user.ban(reason=reason)
     await user.send(f'You have been banned for reason {reason} !')
     await ctx.send(f"\u2705 User {user.mention} has been banned!")
@@ -90,7 +94,6 @@ async def unban_error(ctx, error):
 @bot.command()
 @commands.has_permissions(kick_members=True)
 async def warn(ctx, user: discord.Member, *, reason=None):
-    await ctx.channel.purge(limit=1)
     embed = discord.Embed(
         color=discord.Colour.red()
     )
