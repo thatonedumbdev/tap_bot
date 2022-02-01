@@ -203,6 +203,9 @@ async def clear(ctx, amount: int):
 async def clear_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send('Please specify an amount of messages to delete!')
-
+        
+async def battle(ctx):
+    class Soldier:
+        pass
         
 bot.run("Your Token here")
