@@ -206,6 +206,8 @@ async def clear_error(ctx, error):
         
 async def battle(ctx):
     class Soldier:
+        def __init__(self):
+            return
         pass
         
 bot.run("Your Token here")
