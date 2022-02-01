@@ -207,7 +207,18 @@ async def clear_error(ctx, error):
 async def battle(ctx):
     class Soldier:
         def __init__(self):
-            return
+            self.Force = random.randint(1, 100)
         pass
+    class Enemy:
+        def __init__(self):
+            self.Force = random.randint(10, 100)
+    s = Soldier()
+    e = Enemy()
+    if s.Force > e.Force:
+        await ctx.send(f"You won the battle! You smashed your opponent's Force of {e.Force} with your Power of {s.Force} !")
+    elif s.Force == e.Force:
+        await ctx.send(f"No one wins! both of you have an army power of {s.Force} !")
+    else:
+        await ctx.send(f"You lost...")
         
 bot.run("Your Token here")
