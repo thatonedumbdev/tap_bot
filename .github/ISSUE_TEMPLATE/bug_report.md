@@ -1,10 +1,6 @@
 ---
-name: Bug report
-about: Create a report to help me improve the code
-title: ''
-labels: ''
-assignees: ''
-
+Bug report
+Create a report to help me improve the code
 ---
 
 **Describe the bug**
