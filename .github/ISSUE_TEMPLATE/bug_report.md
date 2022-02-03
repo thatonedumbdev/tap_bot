@@ -1,6 +1,6 @@
 ---
 Bug report
-|Create a report to help me improve the code
+| Create a report to help me improve the code
 ---
 
 **Describe the bug**
