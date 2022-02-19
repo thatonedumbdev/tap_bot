@@ -239,7 +239,52 @@ async def lotto(ctx, amount: int):
 async def lotto_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send("Please enter a number between 1 and 50 after the c!lotto command.")
-
+@bot.command()
+async def play(ctx):
+    valid_choices = ["🪨", "📰", ":✂"]
+    ai_choices = ["Rock", "Paper", "Scissors"]
+    ai_choice = random.choice(ai_choices)
+    embed = discord.Embed(
+        title='Rock Paper Scissors',
+        description='React with the emojis to play',
+        color=discord.Colour.random()
+    )
+    embed.set_footer(text="Ticket System")
+    msg = await ctx.send(embed=embed)
+    await msg.add_reaction("🪨")
+    await msg.add_reaction("📰")
+    await msg.add_reaction("✂")
+    def check(reaction, user):
+        return user == ctx.author and str(reaction.emoji) in valid_choices
+    try:
+        reaction, user = await bot.wait_for('reaction_add', timeout = 30.0, check=check)
+    except asyncio.TimeoutError:
+        return await ctx.send("Not fast enough my guy!")
+    if str(reaction.emoji) == "✂":
+        if ai_choice == "Rock":
+            await ctx.send("HAHAHAHA! I SMASHED YOU WITH MY ROCK!")
+        elif ai_choice == "Scissors":
+            await ctx.send("Tie! No one wins!")
+        else:
+            await ctx.send("Nooooooooo... You got me with your scissors")
+    if str(reaction.emoji) == "🪨":
+        if ai_choice == "Paper":
+            await ctx.send("Yes! I packed your rock into paper!")
+        elif ai_choice == "Rock":
+            await ctx.send("Tie! No one wins!")
+        else:
+            await ctx.send("WHAT? HOW DID YOU JUST SMASH ME?")
+            sleep(0.1)
+            await ctx.send("*aimbot*")
+            sleep(0.1)
+            await ctx.send("*hacker")
+    if str(reaction.emoji) == "📰":
+        if ai_choice == "Scissors":
+            await ctx.send("Sometimes paper isn't stron enough... anyways, **I won**")
+        elif ai_choice == "Paper":
+            await ctx.send("Tie!")
+        else:
+            await ctx.send("You got me again...")
 
 @bot.command()
 async def open(ctx, *, reason=None):
