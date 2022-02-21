@@ -32,7 +32,7 @@ async def on_member_join(member: discord.Member):
         "Enjoy your stay here!",
         "Cool that you are here!"
     ]
-    join_channel = member.guild.get_channel(860864110047264768)
+    join_channel = member.guild.get_channel("Your channel name or ID)
     await join_channel.send(f'Hey {member.mention}, {random.choice(welcoming_msg)}')
 
 
@@ -78,7 +78,7 @@ async def kick_error(ctx, error):
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, user: discord.Member, *, reason=None):
     if reason is None:
-        await ctx.send('PLease specify a reason to ban this user!')
+        await ctx.send('Please specify a reason to ban this user!')
     await ctx.channel.purge(limit=1)
     await user.ban(reason=reason)
     await user.send(f'You have been banned for reason {reason} !')
@@ -239,6 +239,8 @@ async def lotto(ctx, amount: int):
 async def lotto_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send("Please enter a number between 1 and 50 after the c!lotto command.")
+ 
+#new rock paper scissors command
 @bot.command()
 async def play(ctx):
     valid_choices = ["🪨", "📰", ":✂"]
@@ -259,7 +261,7 @@ async def play(ctx):
     try:
         reaction, user = await bot.wait_for('reaction_add', timeout = 30.0, check=check)
     except asyncio.TimeoutError:
-        return await ctx.send("Not fast enough my guy!")
+        return await ctx.send("Not fast enough my guy! You timed out!")
     if str(reaction.emoji) == "✂":
         if ai_choice == "Rock":
             await ctx.send("HAHAHAHA! I SMASHED YOU WITH MY ROCK!")
@@ -404,4 +406,5 @@ async def battle_error(ctx, error):
 
     elif isinstance(error, commands.MemberNotFound):
         await ctx.send("Hey, it looks like this user is not on the server.")
+                                            
 bot.run('Your token here')
