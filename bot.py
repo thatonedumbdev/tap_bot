@@ -39,6 +39,7 @@ async def on_member_join(member: nextcord.Member):
     await join_channel.send(f'Hey {member.mention}, {random.choice(welcoming_msg)}')
 
 
+#Message is raised when you made an error while using one of the commands
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
