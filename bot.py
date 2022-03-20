@@ -17,7 +17,7 @@ discord_url = 'https://discord.com'
 twitter = 'https://twitter.com'
 github = 'https://github.com'
 stackoverflow = 'https://stackoverflow.com'
-bot = commands.Bot(command_prefix="c!")
+bot = commands.Bot(command_prefix="c!", case_insesitive=True)
 bot.remove_command('help')
 
 
