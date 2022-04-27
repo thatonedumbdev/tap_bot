@@ -17,7 +17,7 @@ discord_url = 'https://discord.com'
 twitter = 'https://twitter.com'
 github = 'https://github.com'
 stackoverflow = 'https://stackoverflow.com'
-bot = commands.Bot(command_prefix="c!", case_insesitive=True)
+bot = commands.Bot(command_prefix="c!", case_insensitive=True)
 bot.remove_command('help')
 
 
@@ -67,7 +67,7 @@ async def botinfo(ctx):
     botinfo_embed.add_field(name="Prefix:", value="c!, If you want to change it, edit the Source Code.")
     botinfo_embed.add_field(name='Source Code:', value='Bot Source Code on GitHub:'
                                                        ' https://github.com/atomfrog/Chibibot/blob/main/bot.py')
-    botinfo_embed.add_field(name='Developed by atomfrog and FreerideFriendsYT', value='-------------------------------',
+    botinfo_embed.add_field(name='Developed by thatonedumbdev', value='-------------------------------',
                             inline=False)
     await ctx.send(embed=botinfo_embed)
 
