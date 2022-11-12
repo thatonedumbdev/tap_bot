@@ -92,11 +92,14 @@ async def kick_error(ctx, error):
         await ctx.send("You have to specify a User to kick!")
     if isinstance(error, commands.MemberNotFound):
         await ctx.send(f'BOOOOP ... FATAL ERROR {random.randint(1, 50)} ... MEMBER_NOT_FOUND')
-
+    else:
+        await ctx.send('Oops, something went wrong with kicking the user')
 
 @bot.command()
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, user: nextcord.Member, *, reason=None):
+    if user == ctx.author:
+        return await ctx.send("You can\'t just ban yourself lol")
     if reason is None:
         await ctx.send('PLease specify a reason to ban this user!')
     await user.ban(reason=reason)
@@ -112,11 +115,15 @@ async def ban_error(ctx, error):
         await ctx.send("Please Specify a User to ban!")
     if isinstance(error, commands.MemberNotFound):
         await ctx.send("BEEP ... ERROR: MEMBER_NOT_FOUND BEEP BOP BOP")
+    else:
+        await ctx.send("Something went wrong with banning the user. Please try again.")
 
 
 @bot.command()
 @commands.has_permissions(ban_members=True)
 async def unban(ctx, *, member):
+    if member == ctx.author:
+        return await ctx.send("Bruh. You can\'t unban yourself!")
     banned_users = await ctx.guild.bans()
     member_name, member_discriminator = member.split('#')
 
@@ -128,7 +135,6 @@ async def unban(ctx, *, member):
             await ctx.send(f'\u2705 Unbanned {user.mention} !')
             return
 
-
 @unban.error
 async def unban_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
@@ -137,6 +143,8 @@ async def unban_error(ctx, error):
         await ctx.send("You have to specify a User to unban!")
     if isinstance(error, commands.MemberNotFound):
         await ctx.send("Hey, I could not find that user.")
+    else:
+        await ctx.send("I could not unban the user. Please try again.")
 
 
 @bot.command()
@@ -231,7 +239,7 @@ async def ticket(ctx):
     except asyncio.TimeoutError:
         await ctx.send("Not fast enough buddy! You timed out!")
         return
-    channel = await ctx.guild.create_text_channel(f'ticket-support {author}')
+    channel = await ctx.guild.create_text_channel(f'ticket support for {author}')
     ticket_embed = nextcord.Embed(
         title='This is your ticket channel!',
         description='A supporter will help you as quickly as possible!',
