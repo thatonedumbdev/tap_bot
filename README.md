@@ -1,4 +1,6 @@
-# Chibibot
-The Code for a basic Discord Moderation Bot with some other fun functions fully written in python using discord.py. WARNING: if you get an error message saying Command raised an exception: TypeError: object bool can't be used in 'await' expression, don't change anything in the code. This does NOT affect the bot in ANY way.
+# tap_bot
+The Code for a basic Discord Moderation Bot with some other fun functions fully written in python using discord.py.
+I am planning to make a scripting ability within the bot to make basic bot scripting easier soon.
+A second version of the bot will also be written in JavaScript along with some other laguages to make it more flexible. 
 Official Discord Support Server of this Code:
 https://discord.gg/tqDS8jKYyt
